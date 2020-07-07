@@ -1,0 +1,2 @@
+-module(hhfuns).
+-export(one, two, add).
