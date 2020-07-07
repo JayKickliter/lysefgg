@@ -87,6 +87,11 @@ client(Server_Node) ->
         {message_to, ToName, Message} ->
             {messenger, Server_Node} ! {self(), message_to, ToName, Message},
             await_result();
+        %% This one is not in the original tutorial. I'm just faffing
+        %% about.
+        {message_from, FromName, Fun} when is_function(Fun) ->
+            io:format("Running the following untrused function sent from ~p #YOLO: ~p~n", [FromName, Fun]),
+            Fun();
         {message_from, FromName, Message} ->
             io:format("Nessage from ~p: ~p~n", [FromName, Message])
     end,
